@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:my_game/presentation/pages/HomePage.dart';
+import 'package:my_game/core/themes/app_colors.dart';
+import 'package:my_game/presentation/pages/landing_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AppWidget());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class AppWidget extends StatelessWidget {
+  const AppWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'My Game',
+      initialRoute: '/',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: AppColors.primary,
       ),
-      home: const HomePage(title: 'Flutter Demo Home Page'),
+      routes: {
+        '/': (context) => const LandingPage(),
+      },
     );
   }
 }
