@@ -3,6 +3,7 @@ import 'package:my_game/core/themes/app_colors.dart';
 import 'package:my_game/core/themes/app_images.dart';
 import 'package:my_game/core/themes/app_text_styles.dart';
 import 'package:my_game/presentation/widgets/login_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -53,7 +54,7 @@ class _LandingPageState extends State<LandingPage> {
                     height: size.height * 0.15,
                   ),
                   LoginButton(
-                    "Continuar com Email",
+                    AppLocalizations.of(context)!.loginEmail,
                     AppImages.emailIcon,
                     onTap: () {
                       Navigator.pushReplacementNamed(context, '/login'); //TODO: fazer login
@@ -62,7 +63,7 @@ class _LandingPageState extends State<LandingPage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: LoginButton(
-                      "Continuar com Google",
+                      AppLocalizations.of(context)!.loginGoogle,
                       AppImages.googleIcon,
                       onTap: () {
                         Navigator.pushReplacementNamed(context, '/login'); //TODO: fazer login com google
