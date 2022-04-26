@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_game/core/themes/app_colors.dart';
 import 'package:my_game/presentation/pages/landing_page.dart';
+import 'package:my_game/presentation/pages/login_page.dart';
 
 void main() {
   runApp(const AppWidget());
@@ -13,12 +14,13 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'My Game',
-      initialRoute: '/',
+      initialRoute: '/landing',
       theme: ThemeData(
         primaryColor: AppColors.primary,
       ),
       routes: {
-        '/': (context) => const LandingPage(),
+        '/landing': (context) => const LandingPage(),
+        '/login': (context) => const LoginPage(),
       },
     );
   }

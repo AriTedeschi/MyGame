@@ -25,13 +25,16 @@ class _LandingPageState extends State<LandingPage> {
         child: Stack(
           children: [
             Positioned(
-              top: size.height * 0.15,
+              bottom: size.height * 0.05,
               left: size.width * 0.1,
               right: size.width * 0.1,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: size.height * 0.10,
+                  ),
                   Image.asset(AppImages.logo),
                   SizedBox(
                     height: size.height * 0.15,
@@ -49,15 +52,21 @@ class _LandingPageState extends State<LandingPage> {
                   SizedBox(
                     height: size.height * 0.15,
                   ),
-                  const LoginButton(
+                  LoginButton(
                     "Continuar com Email",
                     AppImages.emailIcon,
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, '/login'); //TODO: fazer login
+                    },
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
                     child: LoginButton(
                       "Continuar com Google",
                       AppImages.googleIcon,
+                      onTap: () {
+                        Navigator.pushReplacementNamed(context, '/login'); //TODO: fazer login com google
+                      },
                     ),
                   ),
                 ],

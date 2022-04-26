@@ -13,9 +13,9 @@ class TextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.heading,
   );
-  static final buttonText = GoogleFonts.inter(
-    fontSize: 15,
-    fontWeight: FontWeight.w400,
+  static final buttonText = GoogleFonts.lexend(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
     color: AppColors.input,
   );
 }
