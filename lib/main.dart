@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:my_game/presentation/pages/HomePage.dart';
+import 'package:my_game/core/themes/app_colors.dart';
+import 'package:my_game/presentation/pages/landing_page.dart';
+import 'package:my_game/presentation/pages/login_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AppWidget());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class AppWidget extends StatelessWidget {
+  const AppWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      title: 'My Game',
+      initialRoute: '/landing',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: AppColors.primary,
       ),
-      home: const HomePage(title: 'Flutter Demo Home Page'),
+      routes: {
+        '/landing': (context) => const LandingPage(),
+        '/login': (context) => const LoginPage(),
+      },
     );
   }
 }
