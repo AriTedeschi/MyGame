@@ -1,6 +1,20 @@
 # MyGame
 
-My Game
+## Grupo
+- PA - PA038TIN1
+- Mobile - CP110TIN1
+- Ari Tedeschi Junior - 190075
+- Joel Ribeiro B. Junior - 190304
+- Matheus H. G. da Silva - 190038
+- Rafael R. Rodrigues - 190320
+- Vinicius A. Barbosa - 180326
+
+## Desenvolvimento
+- Configuração de Cores, fontes, e imagens do projeto
+- Criação da Landing Page
+- Configuração para Internacionalização (EN, PT)
+- Criação da Página de Login e Cadastro (Em Desenvolvimento)
+- Configuração de Autentificação (Em Desenvolvimento)
 
 ## Getting Started
 
