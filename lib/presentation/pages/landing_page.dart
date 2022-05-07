@@ -57,7 +57,8 @@ class _LandingPageState extends State<LandingPage> {
                     AppLocalizations.of(context)!.loginEmail,
                     AppImages.emailIcon,
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, '/login'); //TODO: fazer login
+                      Navigator.pushReplacementNamed(context, '/user'); //TODO: fazer login
+                      //ROUBEI ESSE REDIRECIONAMENTO PARA TESTE DA PAG USER
                     },
                   ),
                   Padding(

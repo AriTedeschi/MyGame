@@ -3,6 +3,7 @@ import 'package:my_game/core/themes/app_colors.dart';
 import 'package:my_game/presentation/pages/landing_page.dart';
 import 'package:my_game/presentation/pages/login_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:my_game/presentation/pages/usernamepage.dart';
 
 void main() {
   runApp(const AppWidget());
@@ -24,6 +25,7 @@ class AppWidget extends StatelessWidget {
       routes: {
         '/landing': (context) => const LandingPage(),
         '/login': (context) => const LoginPage(),
+        '/user': (context) => const UsernamePage(),
       },
     );
   }
