@@ -41,7 +41,8 @@ class _UsernamePageState extends State<UsernamePage> {
                   ),
                   TextField(
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      fillColor: Colors.white, filled: true,
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
                       hintText: 'Enter a username',
                     ),
                   ),
