@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'app_widget.dart';
+import 'package:my_game/core/config/injection_container.dart' as di;
 
-void main() {
+void main() async {
+  di.init();
   runApp(const AppFirebase());
 }
 
@@ -25,7 +27,7 @@ class _AppFirebaseState extends State<AppFirebase> {
           return const Material(
             child: Center(
               child: Text(
-                "Não foi possível inicializar o Firebase", //TODO:
+                "Firebase not initialized",
                 textDirection: TextDirection.ltr,
               ),
             ),

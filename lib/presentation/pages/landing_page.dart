@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get_it/get_it.dart';
 import 'package:my_game/core/themes/app_colors.dart';
 import 'package:my_game/core/themes/app_images.dart';
 import 'package:my_game/core/themes/app_text_styles.dart';
+import 'package:my_game/presentation/controller/login_controller.dart';
 import 'package:my_game/presentation/widgets/login_button.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -13,6 +15,8 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
+  final loginController = GetIt.I.get<LoginController>();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -41,15 +45,15 @@ class _LandingPageState extends State<LandingPage> {
                     height: size.height * 0.15,
                   ),
                   Text(
-                      "PA - PA038TIN1\n"
-                      "Mobile - CP110TIN1\n\n"
-                      "Ari Tedeschi Junior - 190075\n"
-                      "Joel Ribeiro B. Junior - 190304\n"
-                      "Matheus H. G. da Silva - 190038\n"
-                      "Rafael R. Rodrigues - 190320\n"
-                      "Vinicius A. Barbosa - 180326",
-                      style: TextStyles.titleRegular,
-                    ),
+                    "PA - PA038TIN1\n"
+                    "Mobile - CP110TIN1\n\n"
+                    "Ari Tedeschi Junior - 190075\n"
+                    "Joel Ribeiro B. Junior - 190304\n"
+                    "Matheus H. G. da Silva - 190038\n"
+                    "Rafael R. Rodrigues - 190320\n"
+                    "Vinicius A. Barbosa - 180326",
+                    style: TextStyles.titleRegular,
+                  ),
                   SizedBox(
                     height: size.height * 0.15,
                   ),
@@ -57,7 +61,8 @@ class _LandingPageState extends State<LandingPage> {
                     AppLocalizations.of(context)!.loginEmail,
                     AppImages.emailIcon,
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, '/user'); //TODO: fazer login
+                      Navigator.pushReplacementNamed(
+                          context, '/login'); //TODO: fazer login
                       //ROUBEI ESSE REDIRECIONAMENTO PARA TESTE DA PAG USER
                     },
                   ),
@@ -67,7 +72,7 @@ class _LandingPageState extends State<LandingPage> {
                       AppLocalizations.of(context)!.loginGoogle,
                       AppImages.googleIcon,
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, '/login'); //TODO: fazer login com google
+                        loginController.googleSignIn(context);
                       },
                     ),
                   ),
