@@ -20,7 +20,7 @@ class UsernameButton extends StatelessWidget {
           color: AppColors.shape,
           borderRadius: BorderRadius.circular(20),
           border:
-          const Border.fromBorderSide(BorderSide(color: AppColors.stroke)),
+              const Border.fromBorderSide(BorderSide(color: AppColors.stroke)),
         ),
         child: Row(
           children: [

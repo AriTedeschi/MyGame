@@ -50,7 +50,6 @@ class _UsernamePageState extends State<UsernamePage> {
                     height: size.height * 0.15,
                   ),
                   UsernameButton(
-
                     AppLocalizations.of(context)!.cont,
                     AppImages.continueIcon,
                     onTap: () {
