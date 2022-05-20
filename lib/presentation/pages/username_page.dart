@@ -43,7 +43,7 @@ class _UsernamePageState extends State<UsernamePage> {
                     decoration: InputDecoration(
                       fillColor: Colors.white, filled: true,
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
-                      hintText: 'Enter a username',
+                      hintText: AppLocalizations.of(context)!.enterUsername,
                     ),
                   ),
                   SizedBox(
@@ -53,7 +53,7 @@ class _UsernamePageState extends State<UsernamePage> {
                     AppLocalizations.of(context)!.cont,
                     AppImages.continueIcon,
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, '/landing'); //
+                      Navigator.pushReplacementNamed(context, '/home'); //
                     },
                   ),
                 ],

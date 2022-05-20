@@ -8,4 +8,5 @@ class AppColors {
   static const input = Color(0xFF454545);
   static const shape = Color(0xFFE7E7E7);
   static const stroke = Color(0xFFAFAFAF);
+  static const error = Color(0xFFE52A2A);
 }

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:my_game/core/error/exceptions/auth_exception.dart';
 import 'package:my_game/core/error/failure.dart';
@@ -8,19 +7,23 @@ import 'package:my_game/data/model/user_model.dart';
 import 'package:my_game/domain/usecases/get_user.dart';
 import 'package:my_game/domain/usecases/save_user.dart';
 
-import 'auth_controller.dart';
+import '../../core/auth/auth_controller.dart';
 
-class LoginController {
+class LoginBloc {
   final AuthController authController;
   final GetUser getUser;
   final SaveUser saveUser;
 
-  LoginController(
+  LoginBloc(
       {required this.getUser,
       required this.authController,
       required this.saveUser});
 
-  googleSignIn(BuildContext context) async {
+  signIn(String email, String password) async {
+    authController.login(email, password);
+  }
+
+  googleSignIn() async {
     GoogleSignIn _googleSignIn = GoogleSignIn(
       scopes: [
         "email",
@@ -41,8 +44,8 @@ class LoginController {
           Map<String, dynamic>? map = parseJwt(googleAuthentication.idToken);
           final user = UserModel(
             uid: loggedUser.uid,
-            firstName: map!["given_name"],
-            lastName: map["family_name"],
+            firstName: map!["given_name"] ?? "",
+            lastName: map["family_name"] ?? "",
             email: loggedUser.email!,
             username: "",
           );

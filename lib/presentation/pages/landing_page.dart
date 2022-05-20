@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:my_game/core/themes/app_colors.dart';
 import 'package:my_game/core/themes/app_images.dart';
 import 'package:my_game/core/themes/app_text_styles.dart';
-import 'package:my_game/presentation/controller/login_controller.dart';
+import 'package:my_game/presentation/bloc/login_bloc.dart';
 import 'package:my_game/presentation/widgets/login_button.dart';
 
 class LandingPage extends StatefulWidget {
@@ -15,7 +15,7 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  final loginController = GetIt.I.get<LoginController>();
+  final loginBloc = GetIt.I.get<LoginBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +61,7 @@ class _LandingPageState extends State<LandingPage> {
                     AppLocalizations.of(context)!.loginEmail,
                     AppImages.emailIcon,
                     onTap: () {
-                      Navigator.pushReplacementNamed(
-                          context, '/login'); //TODO: fazer login
-                      //ROUBEI ESSE REDIRECIONAMENTO PARA TESTE DA PAG USER
+                      Navigator.pushReplacementNamed(context, '/login');
                     },
                   ),
                   Padding(
@@ -72,7 +70,8 @@ class _LandingPageState extends State<LandingPage> {
                       AppLocalizations.of(context)!.loginGoogle,
                       AppImages.googleIcon,
                       onTap: () {
-                        loginController.googleSignIn(context);
+                        loginBloc.googleSignIn();
+                        Navigator.pushReplacementNamed(context, '/home');
                       },
                     ),
                   ),

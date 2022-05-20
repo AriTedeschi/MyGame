@@ -1,5 +1,9 @@
 {
   "loginGoogle": "Continuar com Google",
   "loginEmail": "Continuar com Email",
-  "cont":"Continuar"
+  "cont": "Continuar",
+  "enterUsername": "Insira um Usuário",
+  "password": "Senha",
+  "validEmail": "Informe o email corretamente!"
+
 }

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:my_game/domain/entity/user.dart';
 
 class UserModel extends User {
-  final String? uid;
+  final String uid;
 
   UserModel(
       {required this.uid,
