@@ -5,7 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../error/exceptions/auth_exception.dart';
 
 class AuthController extends ChangeNotifier {
-  FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   User? user;
   bool isLoading = true;
 
@@ -14,7 +14,7 @@ class AuthController extends ChangeNotifier {
   }
 
   _authenticate() {
-    auth.authStateChanges().listen((User? user) {
+    _auth.authStateChanges().listen((User? user) {
       this.user = (user == null) ? null : user;
       isLoading = false;
       notifyListeners();
@@ -22,13 +22,13 @@ class AuthController extends ChangeNotifier {
   }
 
   _setUser() {
-    user = auth.currentUser;
+    user = _auth.currentUser;
     notifyListeners();
   }
 
   register(String email, String password) async {
     try {
-      await auth.createUserWithEmailAndPassword(
+      await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       _setUser();
     } on FirebaseAuthException catch (e) {
@@ -43,27 +43,30 @@ class AuthController extends ChangeNotifier {
 
   login(String email, String password) async {
     try {
-      await auth.signInWithEmailAndPassword(email: email, password: password);
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
       _setUser();
     } on FirebaseAuthException catch (e) {
-        throw AuthException(e.message!); //TODO: ajustar erro
+      throw AuthException(e.message!); //TODO: ajustar erro
     }
     return null;
   }
 
-  Future<User?> loginWithGoogle(
-      GoogleSignInAuthentication googleAuthentication) async {
+  loginWithGoogle(GoogleSignInAuthentication googleAuthentication) async {
     try {
       final authCredential = GoogleAuthProvider.credential(
         idToken: googleAuthentication.idToken,
         accessToken: googleAuthentication.accessToken,
       );
-      final userCredential = await auth.signInWithCredential(authCredential);
+      await _auth.signInWithCredential(authCredential);
 
       _setUser();
-      return userCredential.user;
     } catch (e) {
       throw AuthException('Erro ao Logar com Google');
     }
+  }
+
+  logout() async {
+    await _auth.signOut();
+    _setUser();
   }
 }

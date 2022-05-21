@@ -69,9 +69,15 @@ class _LandingPageState extends State<LandingPage> {
                     child: LoginButton(
                       AppLocalizations.of(context)!.loginGoogle,
                       AppImages.googleIcon,
-                      onTap: () {
-                        loginBloc.googleSignIn();
-                        Navigator.pushReplacementNamed(context, '/home');
+                      onTap: () async {
+                        bool hasUsername =
+                            await loginBloc.googleSignIn(context);
+                        if (!hasUsername) {
+                          Navigator.pushReplacementNamed(context, '/user');
+                        }
+                        else {
+                          Navigator.pushReplacementNamed(context, '/home');
+                        }
                       },
                     ),
                   ),

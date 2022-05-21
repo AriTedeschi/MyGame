@@ -17,7 +17,7 @@ class AppWidget extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       title: 'My Game',
-      initialRoute: '/loading',
+      home: const AuthCheck(),
       theme: ThemeData(
         primaryColor: AppColors.primary,
       ),
@@ -27,7 +27,6 @@ class AppWidget extends StatelessWidget {
         '/register': (context) => const RegisterPage(),
         '/user': (context) => const UsernamePage(),
         '/home': (context) => const HomePage(),
-        '/loading': (context) => const AuthCheck(),
       },
     );
   }

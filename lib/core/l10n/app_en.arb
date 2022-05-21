@@ -2,7 +2,12 @@
   "loginGoogle": "Continue with Google",
   "loginEmail": "Continue with Email",
   "cont": "Continue",
-  "enterUsername": "Enter a username",
   "password": "Password",
-  "validEmail": "Enter a correct email"
+  "validEmail": "Enter a correct email",
+  "validEqualEmail": "Email is not the same!",
+  "accountCreated": "Account successfully created",
+
+  "username": "Username",
+  "enterUsername": "Enter a username",
+  "validUsername": "Username cannot be null"
 }

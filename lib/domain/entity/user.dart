@@ -1,8 +1,8 @@
 class User {
-  final String firstName;
-  final String lastName;
-  final String email;
-  final String username;
+  String firstName;
+  String lastName;
+  String email;
+  String username;
 
   User(
       {required this.firstName,

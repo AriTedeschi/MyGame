@@ -2,8 +2,12 @@
   "loginGoogle": "Continuar com Google",
   "loginEmail": "Continuar com Email",
   "cont": "Continuar",
-  "enterUsername": "Insira um Usuário",
   "password": "Senha",
-  "validEmail": "Informe o email corretamente!"
+  "validEmail": "Informe o email corretamente!",
+  "validEqualEmail": "Email não coincide!",
+  "accountCreated": "Conta criada com sucesso",
 
+  "username": "Usuário",
+  "enterUsername": "Insira um Usuário",
+  "validUsername": "Usuário não pode ser nulo"
 }

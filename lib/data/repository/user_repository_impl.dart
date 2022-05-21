@@ -26,7 +26,9 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<Either<Failure, DocumentReference>> save(UserModel userModel) async {
     try {
-      return right(await collection.add(userModel.toMap()));
+      DocumentReference documentReference = collection.doc(userModel.uid);
+      documentReference.set(userModel.toMap());
+      return right(documentReference);
     } catch (e) {
       return left(throw const DatabaseFailure("Error saving on Database"));
     }
