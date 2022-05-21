@@ -9,8 +9,8 @@ class RegisterBloc {
 
   RegisterBloc({required this.authController, required this.saveUser});
 
-  register(User user, String password) async {
-    await authController.register(user.email, password);
+  register(User user, String password, context) async {
+    await authController.register(user.email, password, context);
     final userModel = UserModel(
       uid: authController.user!.uid,
       firstName: user.firstName,

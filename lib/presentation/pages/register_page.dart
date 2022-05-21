@@ -37,7 +37,7 @@ class _RegisterPageState extends State<RegisterPage> {
           lastName: lastName,
           email: email.text,
           username: '');
-      await registerBloc.register(user, password.text);
+      await registerBloc.register(user, password.text, context);
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -51,7 +51,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
       Navigator.pushReplacementNamed(context, '/login');
     } on AuthException catch (e) {
-      //TODO:
       setState(() => loading = false);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -84,10 +83,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child:
-                            Text("Crie sua conta", style: TextStyles.titleLogin)),
-                    //TODO: melhorar
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: Text(
+                          AppLocalizations.of(context)!.createYourAccount,
+                          style: TextStyles.titleLogin),
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         vertical: 15.0,
@@ -95,14 +95,15 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       child: TextFormField(
                         cursorColor: AppColors.heading,
-                        decoration: FormDecoration.decoration('Nome'),
+                        decoration: FormDecoration.decoration(
+                            AppLocalizations.of(context)!.firstName),
                         style: const TextStyle(color: AppColors.heading),
                         validator: (value) {
                           if (value!.isNotEmpty) {
                             firstName = value;
                             return null;
                           }
-                          return 'Insira seu nome';
+                          return AppLocalizations.of(context)!.validFirstName;
                         },
                       ),
                     ),
@@ -113,14 +114,16 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       child: TextFormField(
                         cursorColor: AppColors.heading,
-                        decoration: FormDecoration.decoration("Sobrenome"),
+                        decoration: FormDecoration.decoration(
+                            AppLocalizations.of(context)!.lastName),
                         style: const TextStyle(color: AppColors.heading),
                         validator: (value) {
                           if (value!.isNotEmpty) {
                             lastName = value;
                             return null;
                           }
-                          return 'Insira seu sobrenome'; //TODO: adicionar localização
+                          return AppLocalizations.of(context)!
+                              .validLastName;
                         },
                       ),
                     ),
@@ -139,7 +142,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           if (!EmailValidator.validate(value!)) {
                             return AppLocalizations.of(context)!.validEmail;
                           } else if (email.text != emailValidate.text) {
-                            return AppLocalizations.of(context)!.validEqualEmail;
+                            return AppLocalizations.of(context)!
+                                .validEqualEmail;
                           }
                           return null;
                         },
@@ -153,13 +157,16 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: TextFormField(
                         cursorColor: AppColors.heading,
                         controller: emailValidate,
-                        decoration:
-                            FormDecoration.decoration('Confirme seu email'),
+                        decoration: FormDecoration.decoration(
+                            AppLocalizations.of(context)!.confirmEmail),
                         keyboardType: TextInputType.emailAddress,
                         style: const TextStyle(color: AppColors.heading),
                         validator: (value) {
-                          if (email.text != emailValidate.text) {
-                            return AppLocalizations.of(context)!.validEqualEmail;
+                          if (!EmailValidator.validate(value!)) {
+                            return AppLocalizations.of(context)!.validEmail;
+                          } else if (email.text != emailValidate.text) {
+                            return AppLocalizations.of(context)!
+                                .validEqualEmail;
                           }
                           return null;
                         },
@@ -179,11 +186,14 @@ class _RegisterPageState extends State<RegisterPage> {
                         style: const TextStyle(color: AppColors.heading),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Informa sua senha!'; //TODO: adicionar localização
+                            return AppLocalizations.of(context)!
+                                .validPasswordEmpty;
                           } else if (value.length < 8) {
-                            return 'Sua senha deve ter no mínimo 8 caracteres';
+                            return AppLocalizations.of(context)!
+                                .validPasswordLength;
                           } else if (password.text != passwordValidate.text) {
-                            return 'Senhas não coincidem'; //TODO: adicionar localização
+                            return AppLocalizations.of(context)!
+                                .validPasswordEqual;
                           }
                           return null;
                         },
@@ -198,12 +208,19 @@ class _RegisterPageState extends State<RegisterPage> {
                         cursorColor: AppColors.heading,
                         controller: passwordValidate,
                         obscureText: true,
-                        decoration:
-                            FormDecoration.decoration("Confirme sua senha"),
+                        decoration: FormDecoration.decoration(
+                            AppLocalizations.of(context)!.confirmPassword),
                         style: const TextStyle(color: AppColors.heading),
                         validator: (value) {
-                          if (password.text != passwordValidate.text) {
-                            return 'Senhas não coincidem'; //TODO: adicionar localização
+                          if (value!.isEmpty) {
+                            return AppLocalizations.of(context)!
+                                .validPasswordEmpty;
+                          } else if (value.length < 8) {
+                            return AppLocalizations.of(context)!
+                                .validPasswordLength;
+                          } else if (password.text != passwordValidate.text) {
+                            return AppLocalizations.of(context)!
+                                .validPasswordEqual;
                           }
                           return null;
                         },
@@ -241,11 +258,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ]
                               : [
                                   const Icon(Icons.check),
-                                  const Padding(
-                                    padding: EdgeInsets.all(16.0),
+                                   Padding(
+                                    padding: const EdgeInsets.all(16.0),
                                     child: Text(
-                                      "Register",
-                                      style: TextStyle(fontSize: 20),
+                                      AppLocalizations.of(context)!.signUp,
+                                      style: const TextStyle(fontSize: 20),
                                     ),
                                   ),
                                 ],
@@ -255,10 +272,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     TextButton(
                       onPressed: () =>
                           Navigator.pushReplacementNamed(context, '/login'),
-                      child: const Text(
-                        "Já possui cadastro? Logue-se",
-                        style: TextStyle(color: Colors.white),
-                      ), //TODO: Adicionar localização
+                      child: Text(
+                        AppLocalizations.of(context)!.changeToLoginPage,
+                        style: const TextStyle(color: Colors.white),
+                      ),
                     ),
                   ],
                 )),

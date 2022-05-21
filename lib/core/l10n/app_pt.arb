@@ -2,10 +2,29 @@
   "loginGoogle": "Continuar com Google",
   "loginEmail": "Continuar com Email",
   "cont": "Continuar",
-  "password": "Senha",
+  "welcome": "Bem vindo",
+
+  "firstName": "Nome",
+  "validFirstName": "Insira seu nome",
+  "lastName": "Sobrenome",
+  "validLastName": "Insira seu sobrenome",
+
+  "confirmEmail": "Confirme seu email",
   "validEmail": "Informe o email corretamente!",
   "validEqualEmail": "Email não coincide!",
+  "validUsedEmail": "Email já cadastrado",
+
+  "password": "Senha",
+  "confirmPassword": "Confirme sua senha",
+  "validPasswordEmpty": "Informa sua senha!",
+  "validPasswordLength": "Sua senha deve ter no mínimo 8 caracteres",
+  "validPasswordEqual": "Senhas não coincidem",
+
+  "changeToRegisterPage": "Não possui cadastro? Registre-se",
+  "changeToLoginPage": "Já possui cadastro? Logue-se",
+  "createYourAccount": "Crie sua conta",
   "accountCreated": "Conta criada com sucesso",
+  "signUp": "Registrar",
 
   "username": "Usuário",
   "enterUsername": "Insira um Usuário",

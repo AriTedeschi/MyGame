@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../error/exceptions/auth_exception.dart';
 
@@ -26,16 +27,16 @@ class AuthController extends ChangeNotifier {
     notifyListeners();
   }
 
-  register(String email, String password) async {
+  register(String email, String password, context) async {
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       _setUser();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        throw AuthException('Weak Password'); //TODO: ajustar mensagens de erro
+        throw AuthException('Weak Password');
       } else if (e.code == 'email-already-in-use') {
-        throw AuthException("Email already in use");
+        throw AuthException(AppLocalizations.of(context)!.validUsedEmail);
       }
     }
     return null;

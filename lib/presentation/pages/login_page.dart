@@ -26,14 +26,12 @@ class _LoginPageState extends State<LoginPage> {
     setState(() => loading = true);
     try {
       bool hasUsername = await loginBloc.signIn(email.text, password.text);
-      if(!hasUsername) {
+      if (!hasUsername) {
         Navigator.pushReplacementNamed(context, '/user');
-      }
-      else {
+      } else {
         Navigator.pushReplacementNamed(context, '/home');
       }
     } on AuthException catch (e) {
-      //TODO:
       setState(() => loading = false);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -67,8 +65,8 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Padding(
                         padding: const EdgeInsets.only(bottom: 10),
-                        child: Text("Bem Vindo", style: TextStyles.titleLogin)),
-                    //TODO: melhorar
+                        child: Text(AppLocalizations.of(context)!.welcome,
+                            style: TextStyles.titleLogin)),
                     Padding(
                       padding: const EdgeInsets.all(24.0),
                       child: TextFormField(
@@ -98,9 +96,11 @@ class _LoginPageState extends State<LoginPage> {
                         style: const TextStyle(color: AppColors.heading),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Informa sua senha!'; //TODO: adicionar localização
+                            return AppLocalizations.of(context)!
+                                .validPasswordEmpty;
                           } else if (value.length < 8) {
-                            return 'Sua senha deve ter no mínimo 8 caracteres';
+                            return AppLocalizations.of(context)!
+                                .validPasswordLength;
                           }
                           return null;
                         },
@@ -149,10 +149,10 @@ class _LoginPageState extends State<LoginPage> {
                     TextButton(
                       onPressed: () =>
                           Navigator.pushReplacementNamed(context, '/register'),
-                      child: const Text(
-                        "Não possuí cadastro? Registre-se",
-                        style: TextStyle(color: Colors.white),
-                      ), //TODO: Adicionar localização
+                      child: Text(
+                        AppLocalizations.of(context)!.changeToRegisterPage,
+                        style: const TextStyle(color: Colors.white),
+                      ),
                     ),
                   ],
                 )),
