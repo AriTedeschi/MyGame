@@ -1,0 +1,32 @@
+{
+  "loginGoogle": "Continue with Google",
+  "loginEmail": "Continue with Email",
+  "cont": "Continue",
+  "welcome": "Welcome",
+
+  "firstName": "First name",
+  "validFirstName": "Insert a first name",
+  "lastName": "Last name",
+  "validLastName": "Insert a first name",
+
+  "confirmEmail": "Confirm your email",
+  "validEmail": "Enter a correct email",
+  "validEqualEmail": "Email is not the same!",
+  "validUsedEmail": "Email already in use",
+
+  "password": "Password",
+  "confirmPassword": "Confirm your password",
+  "validPasswordEmpty": "Insert a password!",
+  "validPasswordLength": "Your password must contain at least 8 characters",
+  "validPasswordEqual": "Password is not the same",
+
+  "changeToRegisterPage": "Don't have an account? Sign up now",
+  "changeToLoginPage": "Already registered? Sign in now",
+  "createYourAccount": "Create your Account",
+  "accountCreated": "Account successfully created",
+  "signUp": "Sign Up",
+
+  "username": "Username",
+  "enterUsername": "Enter a username",
+  "validUsername": "Username cannot be null"
+}

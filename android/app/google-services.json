@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1090067905936",
+    "project_id": "mygame-bea59",
+    "storage_bucket": "mygame-bea59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090067905936:android:92de2a7a1aa491b986c715",
+        "android_client_info": {
+          "package_name": "mygame.facens"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090067905936-07ctucs84ma4h5g68mlfkgdvrcndq5k5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mygame.facens",
+            "certificate_hash": "e049705cc75c1f37795205fd312f1fd31b54de7e"
+          }
+        },
+        {
+          "client_id": "1090067905936-h4i3p3itjqh2v6l6n9f3ffj8lfdbp772.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbLgkzZbV3TOw6esVD_B9DPq1UOaFke58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090067905936-h4i3p3itjqh2v6l6n9f3ffj8lfdbp772.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
