@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mygame.my_game">
+    package="mygame.facens">
    <application
         android:label="my_game"
         android:name="${applicationName}"
