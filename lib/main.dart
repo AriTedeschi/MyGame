@@ -1,29 +1,46 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:my_game/core/themes/app_colors.dart';
-import 'package:my_game/presentation/pages/landing_page.dart';
-import 'package:my_game/presentation/pages/login_page.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'app_widget.dart';
+import 'package:my_game/core/config/injection_container.dart' as di;
 
-void main() {
-  runApp(const AppWidget());
+void main() async {
+  di.init();
+  runApp(const AppFirebase());
 }
 
-class AppWidget extends StatelessWidget {
-  const AppWidget({Key? key}) : super(key: key);
+class AppFirebase extends StatefulWidget {
+  const AppFirebase({Key? key}) : super(key: key);
+
+  @override
+  State<AppFirebase> createState() => _AppFirebaseState();
+}
+
+class _AppFirebaseState extends State<AppFirebase> {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      title: 'My Game',
-      initialRoute: '/landing',
-      theme: ThemeData(
-        primaryColor: AppColors.primary,
-      ),
-      routes: {
-        '/landing': (context) => const LandingPage(),
-        '/login': (context) => const LoginPage(),
+    return FutureBuilder(
+      future: _initialization,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return const Material(
+            child: Center(
+              child: Text(
+                "Firebase not initialized",
+                textDirection: TextDirection.ltr,
+              ),
+            ),
+          );
+        } else if (snapshot.connectionState == ConnectionState.done) {
+          return const AppWidget();
+        } else {
+          return const Material(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
       },
     );
   }
