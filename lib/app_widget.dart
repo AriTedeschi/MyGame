@@ -8,6 +8,8 @@ import 'package:my_game/presentation/pages/register_page.dart';
 import 'package:my_game/presentation/pages/username_page.dart';
 import 'package:my_game/presentation/widgets/auth_check.dart';
 
+import 'domain/entity/user.dart';
+
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);
 
@@ -26,7 +28,9 @@ class AppWidget extends StatelessWidget {
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
         '/user': (context) => const UsernamePage(),
-        '/home': (context) => const HomePage(),
+        '/home': (context) => HomePage(
+              user: ModalRoute.of(context)!.settings.arguments as User,
+            ),
       },
     );
   }

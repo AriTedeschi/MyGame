@@ -38,4 +38,16 @@ class UserModel extends User {
       };
 
   String toJson() => jsonEncode(toMap());
+
+  static User? toDomain(UserModel? userModel) {
+    if(userModel != null) {
+      return User(
+        firstName: userModel.firstName,
+        lastName: userModel.lastName,
+        email: userModel.email,
+        username: userModel.username,
+      );
+    }
+    return null;
+  }
 }
