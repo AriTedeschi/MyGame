@@ -22,6 +22,10 @@ class _HomePageState extends State<HomePage> {
   final gameBloc = GetIt.I.get<GameBloc>();
   List<Game> games = <Game>[];
 
+  _HomePageState() {
+    getAllGames();
+  }
+
   getAllGames() async {
     games = await gameBloc.findAll();
   }
@@ -29,7 +33,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    getAllGames();
 
     return Scaffold(
       appBar: PreferredSize(

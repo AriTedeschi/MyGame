@@ -1,15 +1,19 @@
 import 'package:get_it/get_it.dart';
 import 'package:my_game/data/repository/game_repository_impl.dart';
+import 'package:my_game/data/repository/post_repository_impl.dart';
 import 'package:my_game/data/repository/user_repository_impl.dart';
 import 'package:my_game/domain/repository/game_repository.dart';
+import 'package:my_game/domain/repository/post_repository.dart';
 import 'package:my_game/domain/repository/user_repository.dart';
 import 'package:my_game/domain/usecases/get_all_games.dart';
+import 'package:my_game/domain/usecases/get_all_posts.dart';
 import 'package:my_game/domain/usecases/get_game.dart';
 import 'package:my_game/domain/usecases/get_user.dart';
 import 'package:my_game/domain/usecases/save_user.dart';
 import 'package:my_game/core/auth/auth_controller.dart';
 import 'package:my_game/presentation/bloc/game_bloc.dart';
 import 'package:my_game/presentation/bloc/login_bloc.dart';
+import 'package:my_game/presentation/bloc/post_bloc.dart';
 import 'package:my_game/presentation/bloc/register_bloc.dart';
 import 'package:my_game/presentation/bloc/user_bloc.dart';
 
@@ -50,4 +54,13 @@ void init() {
   sl.registerLazySingleton(() => GetAllGames(gameRepository: sl()));
   //Repository
   sl.registerLazySingleton<GameRepository>(() => GameRepositoryImpl());
+
+  // Feature - Posts
+  sl.registerFactory(() => PostBloc(
+        getAllPosts: sl()
+      ));
+  // UseCases
+  sl.registerLazySingleton(() => GetAllPosts(postRepository: sl()));
+  //Repository
+  sl.registerLazySingleton<PostRepository>(() => PostRepositoryImpl());
 }
