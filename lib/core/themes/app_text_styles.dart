@@ -18,6 +18,11 @@ class TextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.heading,
   );
+  static final titleBoldHeadingGame = GoogleFonts.lexend(
+    fontSize: 24,
+    fontWeight: FontWeight.w600,
+    color: AppColors.heading,
+  );
   static final buttonText = GoogleFonts.lexend(
     fontSize: 16,
     fontWeight: FontWeight.w600,
