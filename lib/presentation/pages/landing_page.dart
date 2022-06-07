@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:my_game/core/themes/app_colors.dart';
 import 'package:my_game/core/themes/app_images.dart';
 import 'package:my_game/core/themes/app_text_styles.dart';
+import 'package:my_game/domain/entity/user.dart';
 import 'package:my_game/presentation/bloc/login_bloc.dart';
 import 'package:my_game/presentation/widgets/login_button.dart';
 
@@ -70,13 +71,19 @@ class _LandingPageState extends State<LandingPage> {
                       AppLocalizations.of(context)!.loginGoogle,
                       AppImages.googleIcon,
                       onTap: () async {
-                        bool hasUsername =
-                            await loginBloc.googleSignIn(context);
-                        if (!hasUsername) {
-                          Navigator.pushReplacementNamed(context, '/user');
-                        }
-                        else {
-                          Navigator.pushReplacementNamed(context, '/home');
+                        User user = await loginBloc.googleSignIn(context);
+                        if (user.username == "") {
+                          Navigator.pushReplacementNamed(
+                            context,
+                            '/user',
+                            arguments: user,
+                          );
+                        } else {
+                          Navigator.pushReplacementNamed(
+                            context,
+                            '/home',
+                            arguments: user,
+                          );
                         }
                       },
                     ),

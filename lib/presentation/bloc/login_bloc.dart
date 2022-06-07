@@ -6,6 +6,7 @@ import 'package:my_game/core/auth/auth_controller.dart';
 import 'package:my_game/core/error/exceptions/auth_exception.dart';
 import 'package:my_game/core/error/failure.dart';
 import 'package:my_game/data/model/user_model.dart';
+import 'package:my_game/domain/entity/user.dart';
 import 'package:my_game/domain/usecases/get_user.dart';
 import 'package:my_game/domain/usecases/save_user.dart';
 
@@ -19,26 +20,28 @@ class LoginBloc {
       required this.authController,
       required this.saveUser});
 
-  Future<bool> signIn(String email, String password) async {
-    bool hasUsername = true;
-    authController.login(email, password);
-    final result = await getUser.execute(authController.user!.uid);
-    result.fold((failure) {}, (savedUser) async {
-      if (savedUser!.username == "") {
-        hasUsername = false;
-      }
-    });
-    return hasUsername;
+  Future<User> signIn(String email, String password) async {
+    User? user;
+    try{
+      authController.login(email, password);
+      final result = await getUser.execute(authController.user!.uid);
+      result.fold((failure) {}, (savedUser) async {
+        user = UserModel.toDomain(savedUser);
+      });
+      return user!;
+    } catch (error) {
+      throw AuthException("Error authenticating with email");
+    }
   }
 
-  Future<bool> googleSignIn(BuildContext context) async {
-    bool hasUsername = true;
+  Future<User> googleSignIn(BuildContext context) async {
     GoogleSignIn _googleSignIn = GoogleSignIn(
       scopes: [
         "email",
       ],
     );
     try {
+      User? user;
       final response = await _googleSignIn.signIn();
       final GoogleSignInAuthentication googleAuthentication =
           await response!.authentication;
@@ -50,20 +53,19 @@ class LoginBloc {
       result.fold((failure) {}, (savedUser) {
         if (savedUser == null) {
           Map<String, dynamic>? map = parseJwt(googleAuthentication.idToken);
-          final user = UserModel(
+          final userModel = UserModel(
             uid: loggedUser.uid,
             firstName: map!["given_name"] ?? "",
             lastName: map["family_name"] ?? "",
             email: loggedUser.email!,
             username: "",
           );
-          saveUser.execute(user);
-          hasUsername = false;
-        } else if (savedUser.username == "") {
-          hasUsername = false;
+          saveUser.execute(userModel);
+          user = UserModel.toDomain(userModel);
         }
+        user = UserModel.toDomain(savedUser)!;
       });
-      return hasUsername;
+      return user!;
     } on DatabaseFailure catch (e) {
       throw DatabaseFailure(e.message);
     } catch (error) {

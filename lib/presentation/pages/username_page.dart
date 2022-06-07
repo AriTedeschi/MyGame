@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:my_game/core/themes/app_colors.dart';
 import 'package:my_game/core/themes/app_images.dart';
+import 'package:my_game/domain/entity/user.dart';
 import 'package:my_game/presentation/bloc/user_bloc.dart';
 import 'package:my_game/presentation/component/form_decoration.dart';
 
@@ -76,24 +77,29 @@ class _UsernamePageState extends State<UsernamePage> {
                       primary: Colors.blueAccent,
                       onPrimary: AppColors.heading,
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       if (formKey.currentState!.validate()) {
-                        userBloc.updateUsername(username.text);
-                        Navigator.pushReplacementNamed(context, '/home');
+                        User user =
+                            await userBloc.updateUsername(username.text);
+                        Navigator.pushReplacementNamed(
+                          context,
+                          '/home',
+                          arguments: user,
+                        );
                       }
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                              const Icon(Icons.check),
-                              Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Text(
-                                  AppLocalizations.of(context)!.cont,
-                                  style: const TextStyle(fontSize: 20),
-                                ),
-                              ),
-                            ],
+                        const Icon(Icons.check),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            AppLocalizations.of(context)!.cont,
+                            style: const TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
