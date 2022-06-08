@@ -1,10 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:my_game/domain/entity/reply.dart';
 
 class Post {
   String title;
   String description;
   String username;
-  DateTime created;
+  Timestamp created;
   String game;
   List<Reply> replies;
 

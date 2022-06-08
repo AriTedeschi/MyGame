@@ -53,9 +53,11 @@ class GameCard extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Row(
                   children: [
-                    Text(game.name,
-                        textAlign: TextAlign.center,
-                        style: TextStyles.titleBoldHeading)
+                    Text(
+                      game.name,
+                      textAlign: TextAlign.center,
+                      style: TextStyles.titleBoldHeading,
+                    )
                   ],
                 ),
               ),

@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
 
   getAllGames() async {
     games = await gameBloc.findAll();
+    setState(() {});
   }
 
   @override

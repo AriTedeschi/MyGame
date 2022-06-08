@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:my_game/data/model/game_model.dart';
 import 'package:my_game/data/model/reply_model.dart';
 import 'package:my_game/data/model/user_model.dart';
@@ -9,7 +10,7 @@ class PostModel {
   String title;
   String description;
   UserModel user;
-  DateTime created;
+  Timestamp created;
   GameModel game;
   List<ReplyModel> replies;
 
@@ -23,12 +24,13 @@ class PostModel {
 
   factory PostModel.fromMap(Map<String, dynamic> map) {
     return PostModel(
-        title: map['title'],
-        description: map['description'],
-        user: map['user'],
-        created: map['created'],
-        game: map['game'],
-        replies: map['replies']);
+      title: map['title'],
+      description: map['description'],
+      user: UserModel.fromMap(map['user']),
+      created: map['created'],
+      game: GameModel.fromMap(map['game']),
+      replies: ReplyModel.fromMapList(map['replies']),
+    );
   }
 
   factory PostModel.fromJson(String json) =>

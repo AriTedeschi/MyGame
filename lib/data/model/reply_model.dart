@@ -11,7 +11,7 @@ class ReplyModel {
 
   factory ReplyModel.fromMap(Map<String, dynamic> map) {
     return ReplyModel(
-      user: map['user'],
+      user: UserModel.fromMap(map['user']),
       description: map['description'],
     );
   }
@@ -25,6 +25,14 @@ class ReplyModel {
       };
 
   String toJson() => jsonEncode(toMap());
+
+  static List<ReplyModel> fromMapList(List<dynamic> map) {
+    List<ReplyModel> replyModelList = <ReplyModel>[];
+    for(var element in map) {
+      replyModelList.add(ReplyModel.fromMap(element));
+    }
+    return replyModelList;
+  }
 
   static List<Reply> toDomainList(List<ReplyModel> replyModelList) {
     List<Reply> replyList = <Reply>[];
