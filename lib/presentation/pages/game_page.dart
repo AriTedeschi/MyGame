@@ -24,12 +24,8 @@ class _GamePageState extends State<GamePage> {
   final postBloc = GetIt.I.get<PostBloc>();
   List<Post> posts = <Post>[];
 
-  _GamePageState() {
-    getAllPosts();
-  }
-
-  getAllPosts() async {
-    posts = await postBloc.findAll();
+  getPosts(String name) async {
+    posts = await postBloc.findByGame(name);
     setState(() {});
   }
 
@@ -38,6 +34,8 @@ class _GamePageState extends State<GamePage> {
     final size = MediaQuery.of(context).size;
     final user = widget.gamePageArguments.user;
     final game = widget.gamePageArguments.game;
+
+    getPosts(game.name);
 
     return Scaffold(
       appBar: PreferredSize(
@@ -51,36 +49,51 @@ class _GamePageState extends State<GamePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Row(
-                children: [
-                  TextButton(
-                    onPressed: () => Navigator.pushReplacementNamed(
-                      context,
-                      '/home',
-                      arguments: user,
-                    ),
-                    child:
-                        const Icon(Icons.arrow_back, color: Colors.blueAccent),
-                  ),
-                  Text(
-                    game.name,
-                    textAlign: TextAlign.center,
-                    style: TextStyles.titleBoldHeadingGame,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 5),
-                    child: TextButton(
-                      onPressed: () => const PostInput(),//TODO: fazer o post
-                      child: const Icon(
-                        Icons.add,
-                        color: Colors.green,
-                        size: 30,
+            SizedBox(
+              height: 60,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: 0,
+                      top: 2,
+                      child: TextButton(
+                        onPressed: () => Navigator.pushReplacementNamed(
+                          context,
+                          '/home',
+                          arguments: user,
+                        ),
+                        child: const Icon(
+                          Icons.arrow_back,
+                          color: Colors.blueAccent,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    Positioned(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          game.name,
+                          textAlign: TextAlign.center,
+                          style: TextStyles.titleBoldHeadingGame,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      right: 0,
+                      top: 2.5,
+                      child: TextButton(
+                        onPressed: () => const PostInput(), //TODO: fazer o post
+                        child: const Icon(
+                          Icons.add,
+                          color: Colors.green,
+                          size: 30,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Expanded(

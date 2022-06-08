@@ -9,10 +9,13 @@ class PostRepositoryImpl implements PostRepository {
       FirebaseFirestore.instance.collection('post');
 
   @override
-  Future<Either<Failure, List<PostModel>>> getAll() async {
+  Future<Either<Failure, List<PostModel>>> getByName(String name) async {
     try {
       List<PostModel> postModels = <PostModel>[];
-      final snapShot = await collection.orderBy('created').get();
+      final snapShot = await collection
+          .where('game.name', isEqualTo: name)
+          .orderBy('created')
+          .get();
       final docs = snapShot.docs;
       for (var element in docs) {
         final map = PostModel.fromMap(element.data() as Map<String, dynamic>);

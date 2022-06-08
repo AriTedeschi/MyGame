@@ -57,10 +57,10 @@ void init() {
 
   // Feature - Posts
   sl.registerFactory(() => PostBloc(
-        getAllPosts: sl()
+        getPostsByName: sl()
       ));
   // UseCases
-  sl.registerLazySingleton(() => GetAllPosts(postRepository: sl()));
+  sl.registerLazySingleton(() => GetPostsByName(postRepository: sl()));
   //Repository
   sl.registerLazySingleton<PostRepository>(() => PostRepositoryImpl());
 }

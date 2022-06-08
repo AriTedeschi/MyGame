@@ -3,5 +3,5 @@ import 'package:my_game/core/error/failure.dart';
 import 'package:my_game/data/model/post_model.dart';
 
 abstract class PostRepository {
-  Future<Either<Failure, List<PostModel>>> getAll();
+  Future<Either<Failure, List<PostModel>>> getByName(String name);
 }

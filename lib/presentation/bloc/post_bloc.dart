@@ -2,17 +2,16 @@ import 'package:my_game/core/error/failure.dart';
 import 'package:my_game/data/model/post_model.dart';
 import 'package:my_game/domain/entity/post.dart';
 import 'package:my_game/domain/usecases/get_all_posts.dart';
-import 'package:my_game/domain/usecases/use_case.dart';
 
 class PostBloc {
-  final GetAllPosts getAllPosts;
+  final GetPostsByName getPostsByName;
 
-  PostBloc({required this.getAllPosts});
+  PostBloc({required this.getPostsByName});
 
-  Future<List<Post>> findAll() async {
+  Future<List<Post>> findByGame(String name) async {
     try {
       List<Post> postList = <Post>[];
-      final result = await getAllPosts.execute(NoParams());
+      final result = await getPostsByName.execute(name);
       result.fold((failure) {}, (postModelList) {
         postList = PostModel.toDomainList(postModelList);
       });
