@@ -6,8 +6,8 @@ import 'package:my_game/domain/entity/game.dart';
 import 'package:my_game/domain/entity/post.dart';
 import 'package:my_game/domain/entity/user.dart';
 import 'package:my_game/presentation/bloc/post_bloc.dart';
+import 'package:my_game/presentation/pages/post_page.dart';
 import 'package:my_game/presentation/widgets/post_card.dart';
-import 'package:my_game/presentation/widgets/post_input.dart';
 
 import '../widgets/my_app_bar.dart';
 
@@ -39,7 +39,7 @@ class _GamePageState extends State<GamePage> {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(size.height * 0.15),
+        preferredSize: Size.fromHeight(size.height * 0.10),
         child: MyAppBar(user: user),
       ),
       body: Container(
@@ -84,7 +84,14 @@ class _GamePageState extends State<GamePage> {
                       right: 0,
                       top: 2.5,
                       child: TextButton(
-                        onPressed: () => const PostInput(), //TODO: fazer o post
+                        onPressed: () => Navigator.pushReplacementNamed(
+                          context,
+                          '/newPost',
+                          arguments: PostPageArguments(
+                            user: user,
+                            game: game,
+                          )
+                        ), //TODO: fazer o post
                         child: const Icon(
                           Icons.add,
                           color: Colors.green,

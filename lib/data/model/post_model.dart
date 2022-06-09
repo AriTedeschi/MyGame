@@ -39,9 +39,9 @@ class PostModel {
   Map<String, dynamic> toMap() => {
         "title": title,
         "description": description,
-        "user": user,
+        "user": user.toMap(),
         "created": created,
-        "game": game,
+        "game": game.toMap(),
         "replies": replies
       };
 

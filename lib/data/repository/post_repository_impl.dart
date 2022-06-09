@@ -26,4 +26,25 @@ class PostRepositoryImpl implements PostRepository {
       return left(throw const DatabaseFailure("Error getting from Database"));
     }
   }
+
+  @override
+  Future<Either<Failure, DocumentReference>> save(PostModel postModel) async {
+    try {
+      int id = await _autoIncrement();
+      DocumentReference documentReference = collection.doc(id.toString());
+      documentReference.set(postModel.toMap());
+      return right(documentReference);
+    } catch (e) {
+      return left(throw const DatabaseFailure("Error saving on Database"));
+    }
+  }
+
+  Future<int> _autoIncrement() async {
+    final snapShot = await collection.where('id', isEqualTo: '0').get();
+    final element = snapShot.docs.single.data() as Map<String, dynamic>;
+    int counter = element['counter'] + 1;
+    DocumentReference documentReference = collection.doc("0");
+    documentReference.update({'counter': counter});
+    return counter;
+  }
 }

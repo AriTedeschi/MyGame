@@ -6,9 +6,10 @@ import 'package:my_game/domain/repository/game_repository.dart';
 import 'package:my_game/domain/repository/post_repository.dart';
 import 'package:my_game/domain/repository/user_repository.dart';
 import 'package:my_game/domain/usecases/get_all_games.dart';
-import 'package:my_game/domain/usecases/get_all_posts.dart';
+import 'package:my_game/domain/usecases/get_posts_by_name.dart';
 import 'package:my_game/domain/usecases/get_game.dart';
 import 'package:my_game/domain/usecases/get_user.dart';
+import 'package:my_game/domain/usecases/save_post.dart';
 import 'package:my_game/domain/usecases/save_user.dart';
 import 'package:my_game/core/auth/auth_controller.dart';
 import 'package:my_game/presentation/bloc/game_bloc.dart';
@@ -57,10 +58,13 @@ void init() {
 
   // Feature - Posts
   sl.registerFactory(() => PostBloc(
-        getPostsByName: sl()
+        getPostsByName: sl(),
+        authController: sl(),
+        savePost: sl(),
       ));
   // UseCases
   sl.registerLazySingleton(() => GetPostsByName(postRepository: sl()));
+  sl.registerLazySingleton(() => SavePost(postRepository: sl()));
   //Repository
   sl.registerLazySingleton<PostRepository>(() => PostRepositoryImpl());
 }
