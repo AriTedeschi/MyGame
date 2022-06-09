@@ -13,7 +13,7 @@ class GameRepositoryImpl implements GameRepository {
     try {
       List<GameModel> gameModels = <GameModel>[];
 
-      final snapShot = await collection.get();
+      final snapShot = await collection.orderBy('id').get();
       final docs = snapShot.docs;
       for (var element in docs) {
         final map = GameModel.fromMap(element.data() as Map<String, dynamic>);

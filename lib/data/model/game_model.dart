@@ -41,4 +41,12 @@ class GameModel extends Game {
       imageUrl: gameModel.imageUrl,
     );
   }
+
+  static GameModel toData(Game game) {
+    return GameModel(
+      id: game.id,
+      name: game.name,
+      imageUrl: game.imageUrl,
+    );
+  }
 }

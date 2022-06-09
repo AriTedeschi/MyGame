@@ -5,6 +5,7 @@ import 'package:my_game/presentation/pages/game_page.dart';
 import 'package:my_game/presentation/pages/home_page.dart';
 import 'package:my_game/presentation/pages/landing_page.dart';
 import 'package:my_game/presentation/pages/login_page.dart';
+import 'package:my_game/presentation/pages/post_page.dart';
 import 'package:my_game/presentation/pages/profile_page.dart';
 import 'package:my_game/presentation/pages/register_page.dart';
 import 'package:my_game/presentation/pages/username_page.dart';
@@ -30,15 +31,16 @@ class AppWidget extends StatelessWidget {
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
         '/user': (context) => const UsernamePage(),
-        '/home': (context) => HomePage(
-              user: ModalRoute.of(context)!.settings.arguments as User,
-            ),
+        '/home': (context) =>
+            HomePage(user: ModalRoute.of(context)!.settings.arguments as User),
         '/game': (context) => GamePage(
             gamePageArguments: ModalRoute.of(context)!.settings.arguments
                 as GamePageArguments),
         '/profile': (context) => ProfilePage(
-              user: ModalRoute.of(context)!.settings.arguments as User,
-            ),
+            user: ModalRoute.of(context)!.settings.arguments as User),
+        '/newPost': (context) => PostPage(
+            postPageArguments: ModalRoute.of(context)!.settings.arguments
+                as PostPageArguments),
       },
     );
   }

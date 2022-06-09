@@ -9,5 +9,4 @@ class User {
       required this.lastName,
       required this.email,
       required this.username});
-
 }

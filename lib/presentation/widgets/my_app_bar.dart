@@ -35,8 +35,9 @@ class _MyAppBarState extends State<MyAppBar> {
                   style: TextStyles.titleRegular,
                   children: [
                     TextSpan(
-                        text: widget.user.username,
-                        style: TextStyles.titleBoldHeading) //TODO: nacionalizar
+                      text: widget.user.username,
+                      style: TextStyles.titleBoldHeading,
+                    ) //TODO: nacionalizar
                   ],
                 ),
               ),

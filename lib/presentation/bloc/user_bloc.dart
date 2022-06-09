@@ -34,6 +34,10 @@ class UserBloc {
     return user;
   }
 
+  logout() {
+    authController.logout();
+  }
+
   bool isLoading() {
     return authController.isLoading;
   }

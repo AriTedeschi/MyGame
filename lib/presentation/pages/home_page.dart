@@ -24,16 +24,18 @@ class _HomePageState extends State<HomePage> {
 
   getAllGames() async {
     games = await gameBloc.findAll();
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     getAllGames();
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(size.height * 0.15),
+        preferredSize: Size.fromHeight(size.height * 0.10),
         child: MyAppBar(user: widget.user),
       ),
       body: Container(

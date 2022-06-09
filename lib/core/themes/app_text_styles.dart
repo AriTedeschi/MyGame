@@ -13,6 +13,21 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.heading,
   );
+  static final postedBy = GoogleFonts.lexend(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: AppColors.body,
+  );
+  static final content = GoogleFonts.lexend(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.body,
+  );
+  static final inputContent = GoogleFonts.lexend(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: AppColors.body,
+  );
   static final titleBoldHeading = GoogleFonts.lexend(
     fontSize: 20,
     fontWeight: FontWeight.w600,
