@@ -7,6 +7,7 @@ import 'package:my_game/data/model/user_model.dart';
 import 'package:my_game/domain/entity/post.dart';
 
 class PostModel {
+  String id;
   String title;
   String description;
   UserModel user;
@@ -15,7 +16,8 @@ class PostModel {
   List<ReplyModel> replies;
 
   PostModel(
-      {required this.title,
+      {required this.id,
+      required this.title,
       required this.description,
       required this.user,
       required this.created,
@@ -24,6 +26,7 @@ class PostModel {
 
   factory PostModel.fromMap(Map<String, dynamic> map) {
     return PostModel(
+      id: map['id'],
       title: map['title'],
       description: map['description'],
       user: UserModel.fromMap(map['user']),
@@ -37,6 +40,7 @@ class PostModel {
       PostModel.fromMap(jsonDecode(json));
 
   Map<String, dynamic> toMap() => {
+        "id": id,
         "title": title,
         "description": description,
         "user": user.toMap(),
@@ -57,6 +61,7 @@ class PostModel {
 
   static Post toDomain(PostModel postModel) {
     return Post(
+      id: postModel.id,
       title: postModel.title,
       description: postModel.description,
       username: postModel.user.username,
