@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:my_game/core/themes/app_colors.dart';
 import 'package:my_game/core/themes/app_text_styles.dart';
+import 'package:my_game/domain/entity/game.dart';
 import 'package:my_game/domain/entity/post.dart';
+import 'package:my_game/domain/entity/user.dart';
+import 'package:my_game/presentation/pages/post_page.dart';
 
 class PostCard extends StatelessWidget {
   final Post post;
+  final User user;
+  final Game game;
 
-  const PostCard({Key? key, required this.post}) : super(key: key);
+  const PostCard(
+      {Key? key, required this.post, required this.user, required this.game})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +25,6 @@ class PostCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.input,
         borderRadius: BorderRadius.circular(20),
-        border: const Border.fromBorderSide(
-          BorderSide(color: AppColors.stroke),
-        ),
       ),
       child: Stack(
         children: [
@@ -53,7 +57,7 @@ class PostCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 20,
+            bottom: 22,
             child: Container(
               margin: const EdgeInsets.symmetric(vertical: 5),
               height: 2,
@@ -67,16 +71,21 @@ class PostCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(right: 10, bottom: 5),
               child: Text(
-                "Postado por : " + post.username,
+                "Postado por: " + post.username,
                 style: TextStyles.postedBy,
               ),
             ),
           ),
           Positioned(
             bottom: -10,
-            left: 0,
+            left: 3,
             child: TextButton(
-              onPressed: () => {}, //TODO:
+              onPressed: () => Navigator.pushReplacementNamed(
+                context,
+                "/post",
+                arguments:
+                    PostPageArguments(user: user, game: game, post: post),
+              ),
               child: Text(
                 "Respostas (" + post.replies.length.toString() + ")",
                 style: TextStyles.postedBy,

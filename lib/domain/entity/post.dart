@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:my_game/domain/entity/reply.dart';
 
 class Post {
+  String id;
   String title;
   String description;
   String username;
@@ -10,7 +11,8 @@ class Post {
   List<Reply> replies;
 
   Post(
-      {required this.title,
+      {required this.id,
+      required this.title,
       required this.description,
       required this.username,
       required this.created,

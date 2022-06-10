@@ -6,7 +6,7 @@ import 'package:my_game/domain/entity/game.dart';
 import 'package:my_game/domain/entity/post.dart';
 import 'package:my_game/domain/entity/user.dart';
 import 'package:my_game/presentation/bloc/post_bloc.dart';
-import 'package:my_game/presentation/pages/post_page.dart';
+import 'package:my_game/presentation/pages/new_post_page.dart';
 import 'package:my_game/presentation/widgets/post_card.dart';
 
 import '../widgets/my_app_bar.dart';
@@ -87,11 +87,11 @@ class _GamePageState extends State<GamePage> {
                         onPressed: () => Navigator.pushReplacementNamed(
                           context,
                           '/newPost',
-                          arguments: PostPageArguments(
+                          arguments: NewPostPageArguments(
                             user: user,
                             game: game,
-                          )
-                        ), //TODO: fazer o post
+                          ),
+                        ),
                         child: const Icon(
                           Icons.add,
                           color: Colors.green,
@@ -107,7 +107,7 @@ class _GamePageState extends State<GamePage> {
               child: ListView.builder(
                 itemCount: posts.length,
                 itemBuilder: (BuildContext ctx, int index) {
-                  return PostCard(post: posts[index]);
+                  return PostCard(post: posts[index], user: user, game: game);
                 },
               ),
             ),

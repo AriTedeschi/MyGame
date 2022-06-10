@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:my_game/data/model/user_model.dart';
 import 'package:my_game/domain/entity/reply.dart';
 
@@ -20,7 +21,7 @@ class ReplyModel {
       ReplyModel.fromMap(jsonDecode(json));
 
   Map<String, dynamic> toMap() => {
-        "user": user,
+        "user": user.toMap(),
         "description": description,
       };
 
@@ -28,7 +29,7 @@ class ReplyModel {
 
   static List<ReplyModel> fromMapList(List<dynamic> map) {
     List<ReplyModel> replyModelList = <ReplyModel>[];
-    for(var element in map) {
+    for (var element in map) {
       replyModelList.add(ReplyModel.fromMap(element));
     }
     return replyModelList;
@@ -47,5 +48,16 @@ class ReplyModel {
       username: replyModel.user.username,
       description: replyModel.description,
     );
+  }
+
+  Map<String, dynamic> toMapList() {
+    return {
+      'replies': FieldValue.arrayUnion([
+        {
+          "user": user.toMap(),
+          "description": description,
+        },
+      ]),
+    };
   }
 }
