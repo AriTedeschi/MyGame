@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:my_game/core/error/exceptions/auth_exception.dart';
 import 'package:my_game/core/themes/app_colors.dart';
 import 'package:my_game/core/themes/app_text_styles.dart';
+import 'package:my_game/domain/entity/user.dart';
 import 'package:my_game/presentation/bloc/login_bloc.dart';
 import 'package:my_game/presentation/component/form_decoration.dart';
 
@@ -25,11 +26,11 @@ class _LoginPageState extends State<LoginPage> {
   login() async {
     setState(() => loading = true);
     try {
-      bool hasUsername = await loginBloc.signIn(email.text, password.text);
-      if (!hasUsername) {
+      User user = await loginBloc.signIn(email.text, password.text);
+      if (user.username == "") {
         Navigator.pushReplacementNamed(context, '/user');
       } else {
-        Navigator.pushReplacementNamed(context, '/home');
+        Navigator.pushReplacementNamed(context, '/home', arguments: user);
       }
     } on AuthException catch (e) {
       setState(() => loading = false);
