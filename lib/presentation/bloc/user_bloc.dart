@@ -4,6 +4,8 @@ import 'package:my_game/domain/entity/user.dart';
 import 'package:my_game/domain/usecases/get_user.dart';
 import 'package:my_game/domain/usecases/save_user.dart';
 
+import '../../core/error/failure.dart';
+
 class UserBloc {
   final AuthController authController;
   final SaveUser saveUser;
@@ -23,6 +25,16 @@ class UserBloc {
       user = UserModel.toDomain(userModel);
     });
     return user!;
+  }
+
+  Future<User> updateUser(User user) async {
+    try {
+      final userModel = UserModel.toData(authController.user!.uid, user);
+      saveUser.execute(userModel);
+      return user;
+    } on DatabaseFailure catch (e) {
+      throw DatabaseFailure(e.message);
+    }
   }
 
   Future<User?> findUser() async {

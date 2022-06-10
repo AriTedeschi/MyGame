@@ -28,7 +28,7 @@ class PostRepositoryImpl implements PostRepository {
       List<PostModel> postModels = <PostModel>[];
       final snapShot = await collection
           .where('game.name', isEqualTo: name)
-          .orderBy('created')
+          .orderBy('created', descending: true)
           .get();
       final docs = snapShot.docs;
       for (var element in docs) {

@@ -11,7 +11,6 @@ import 'package:my_game/presentation/pages/post_page.dart';
 import 'package:my_game/presentation/pages/profile_page.dart';
 import 'package:my_game/presentation/pages/register_page.dart';
 import 'package:my_game/presentation/pages/username_page.dart';
-import 'package:my_game/presentation/widgets/auth_check.dart';
 
 import 'domain/entity/user.dart';
 
@@ -24,7 +23,7 @@ class AppWidget extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       title: 'My Game',
-      home: const AuthCheck(),
+      initialRoute: '/landing',
       theme: ThemeData(
         primaryColor: AppColors.primary,
       ),
