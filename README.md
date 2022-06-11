@@ -102,11 +102,44 @@ Essa tela será responsável por adicionar o Usuário de uma conta realizando o 
   <img src="https://user-images.githubusercontent.com/70178202/170058261-87f3caa5-f97b-402f-8033-d1c92ec78115.png">
 </p>
 
-### Home Page - Em desenvolvimento
-Essa tela irá apresentar um Dashboard com todos os jogos que possuem um forum na plataforma, possuirá uma navbar com o user do usuario, a possibilidade de acesasr a tela de **Perfil** e também realizar o Log out.
+### Home Page
+Essa tela irá apresentar um Dashboard com todos os jogos que ao clicar em qualquer um deles vai ser possivel acessar o fórum equivalente desse jogo (**Game Page**, possuirá uma navbar com o username do usuario, a possibilidade de acessar a tela de **Perfil** ao clicar na imagem de usuário no canto superior direito.
 
-### Profile Page - Em desenvolvimento
-Na tela de perfil será possível visualizar e alterar todos os dados da conta, sendo eles: Nome, Sobrenome, Usuário, Email e Senha.
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/70178202/173204694-640c8440-42cd-42ef-ac65-0e7c53f1cbbf.png">
+</p>
 
-### Game Page - Em desenvolvimento
-Essa tela irá possuir o forúm com todos os posts dos usuários relacionado ao Jogo, podendo possuir postagens de humor, dicas, vazamentos, novidades, entre muitas outras. Será possível realizar comentários nos posts também.
+### Profile Page
+Na tela de Perfil vai ser possível alterar o seu Nome, Sobrenome e usuário. No canto superior direito vai ter um ícone de Casa que ao clicar será redirecionado para a **Home Page**. Já no canto superior direito vai é possível encontrar um ícone de 'Logout' para que o usuário seja deslogado ao clicar no ícone.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/70178202/173204804-ca9538fc-54a4-45b2-8c97-ff48674122f0.png">
+</p>
+
+### Game Page
+Essa tela assim como a **HomePage** possui uma Navbar com os dados do usuário. Possui também um forúm com todos os posts dos usuários relacionado ao Jogo, podendo conter postagens de humor, dicas, vazamentos, novidades, entre muitas outras. Nessa tela, para realizar uma postagem será necessário clicar no ícone de *+* no canto superior direito, já no canto superior esquerdo é encontrado uma seta para esquerda, que irá redirecionar o usuário para a tela anterior. Já em cada postagem é possível visualizar o título, conteúdo, o nome de quem realizou a postagem e um botão com a quantidade de respostas, que ao ser clicado será redirecionado à tela de **Respostas**.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/70178202/173205316-16c8dc34-b9b3-4539-b2f0-e45a768ee130.png">
+</p>
+
+### New Post Page
+Ao clicar no *+* na tela do jogo, o usuário será redirecionado para essa página aonde ele poderá realizar uma nova postagem, inserindo um título e o conteudo (Máximo de 500 caractéres). No canto superior esquerdo possui uma seta para retornar à página anterior.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/70178202/173205398-48e3099d-165a-442e-bdba-ddfb83ccb856.png">
+</p>
+
+### Post Page
+Essa página será acessada ao clicar no botão de respostas do post selecionado, onde será possível visualizar todas as respostas e seus determinados autores. No canto superior direito possui um ícone de *+* para realizar uma nova resposta, e no canto superior esquerdo possui uma seta para esquerda para retornar à pagina anterior.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/70178202/173205533-39fc30ad-2047-4ef8-95da-6f499d27550e.png">
+</p>
+
+### New Reply Page
+Essa página será acessada ao clicar no botão de *+* na Post Page, aqui será possível escrever sua resposta para o determinado Post. No canto superior direito possui uma seta para esquerda para retornar à página anterior.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/70178202/173205598-348240a6-1a6e-4f35-9de1-7cf649cd732b.png">
+</p>
